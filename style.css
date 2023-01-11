@@ -1,0 +1,48 @@
+ body {
+     margin: 100px;
+     width: 50%;
+     margin: auto;
+     border: 1px solid #dadde1;
+     border-radius: 10px;
+
+
+ }
+
+ form {
+     width: 100%;
+     padding-right: 15px;
+     padding-left: 15px;
+     margin-right: auto;
+     margin-left: auto;
+
+
+ }
+
+ .cities {
+     margin: 20px;
+ }
+
+ .sun {
+     color: rgb(143, 137, 137);
+     font-size: 100px;
+     margin-top: 10px;
+ }
+
+ .icons {
+     color: rgb(143, 137, 137);
+     font-size: 50px;
+ }
+
+ .week {
+     font-size: 15px;
+     color: blue;
+ }
+
+ .degrees {
+     color: brown;
+ }
+
+ .dado {
+     color: black;
+     font-size: 20px;
+ }
