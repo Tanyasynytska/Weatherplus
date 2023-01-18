@@ -2,10 +2,13 @@
      margin: 100px;
      width: 50%;
      margin: auto;
+
+ }
+
+ .container {
     border: 1px solid #dadde1;
     border-radius: 10px;
  }
-
 
  form {
      width: 100%;
