@@ -24,6 +24,14 @@
      margin: 20px;
  }
 
+.icons .active {
+    color: black;
+    cursor: default;
+}
+.icons .active:hover {
+    text-decoration: none;
+}
+
 
  .sun {
      color: rgb(143, 137, 137);
