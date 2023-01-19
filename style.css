@@ -24,6 +24,7 @@
      margin: 20px;
  }
 
+
  .sun {
      color: rgb(143, 137, 137);
      font-size: 100px;
@@ -31,8 +32,7 @@
  }
 
  .icons {
-     color: rgb(143, 137, 137);
-     font-size: 50px;
+     font-size: 20px;
  }
 
  .week {

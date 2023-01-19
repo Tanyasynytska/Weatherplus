@@ -23,13 +23,13 @@ return `${day} ${hours}:${minutes}`;
 }
 
 function temperatureNow(response){
-console.log(response.data)
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
 let descriptionElement = document.querySelector("#description");
 let humidityElement = document.querySelector("#humidity");
 let windElement = document.querySelector("#wind");
 let dateElement = document.querySelector("#date");
+let iconElement = document.querySelector("#icon");
 
 
 temperatureElement.innerHTML = Math.round(response.data.main.temp);
@@ -38,13 +38,30 @@ descriptionElement.innerHTML = response.data.weather[0].description;
 humidityElement.innerHTML = response.data.main.humidity;
 windElement.innerHTML = Math.round(response.data.wind.speed);
 dateElement.innerHTML = fDate(response.data.dt * 1000);
+iconElement.setAttribute(
+    "src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+);
 
 }
 
+function allCity(city) {
 let apiKey = "0d433b84a5fd6bae98118c5f85896fad";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Lisbon&appid=${apiKey}&units=metric`;
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(temperatureNow);
+}
+
+function search(event) {
+    event.preventDefault();
+    let cityInpElement = document.querySelector("#city-input");
+    allCity(cityInpElement.value)
+
+}
+allCity("New York");
+
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
 
 
 // function dateTime() {
@@ -92,23 +109,23 @@ axios.get(apiUrl).then(temperatureNow);
 
 
 
-    function cityName(event) {
-            event.preventDefault();
-            let cityDisplay = document.querySelector("#search-city");
-            let currentCity = document.querySelector("#city");
-            if (cityDisplay.value) {
-                currentCity.innerHTML = cityDisplay.value;
-            } else {
-                currentCity.innerHTML = null;
-                alert("Please type a city");
-                currentCity.innerHTML = "Nowhere";
-            }
-        }
-        let city = document.querySelector("#add-city");
-        city.addEventListener("submit", cityName);
+//     function cityName(event) {
+//             event.preventDefault();
+//             let cityDisplay = document.querySelector("#search-city");
+//             let currentCity = document.querySelector("#city");
+//             if (cityDisplay.value) {
+//                 currentCity.innerHTML = cityDisplay.value;
+//             } else {
+//                 currentCity.innerHTML = null;
+//                 alert("Please type a city");
+//                 currentCity.innerHTML = "Nowhere";
+//             }
+//         }
+//         let city = document.querySelector("#add-city");
+//         city.addEventListener("submit", cityName);
 
 
- let searchCityFrom = document.querySelector("#search");
+//  let searchCityFrom = document.querySelector("#search");
 
   
  
