@@ -22,7 +22,9 @@ function fDate(timestamp) {
 return `${day} ${hours}:${minutes}`;
 }
 
-function displayWeather() {
+function displayWeather(response) {
+console.log(response.data.daily)
+
 weatherElement = document.querySelector("#weather");
 
 let weatherHTML = `<div class="row">`;
@@ -43,6 +45,12 @@ days.forEach(function (day) {
     weatherElement.innerHTML = weatherHTML;
 }
 
+function getWeather(coordinates) {
+    let apiKey = "bd3bb6534458ba51b48c49f5155745b6";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeather);
+}
+
 function temperatureNow(response){
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
@@ -51,8 +59,6 @@ let humidityElement = document.querySelector("#humidity");
 let windElement = document.querySelector("#wind");
 let dateElement = document.querySelector("#date");
 let iconElement = document.querySelector("#icon");
-
-displayWeather();
 
 celsiusTemperature = response.data.main.temp;
 
@@ -65,6 +71,8 @@ dateElement.innerHTML = fDate(response.data.dt * 1000);
 iconElement.setAttribute(
     "src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
 );
+
+getWeather(response.data.coord);
 
 }
 
