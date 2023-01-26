@@ -22,6 +22,27 @@ function fDate(timestamp) {
 return `${day} ${hours}:${minutes}`;
 }
 
+function displayWeather() {
+weatherElement = document.querySelector("#weather");
+
+let weatherHTML = `<div class="row">`;
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+days.forEach(function (day) {
+    weatherHTML = weatherHTML + `
+            <div class="col-2">
+            <div class="weather-plus-date">${day}</div>
+            <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" width="42" />
+            <div class="weather-plus-temperatures">
+                <span class="weather-plus-temperature-max"> 25° </span>
+                <span class="weather-plus-temperature-min"> 18° </span>
+            </div>
+        </div>`;
+    
+})
+    weatherHTML = weatherHTML + `</div>`;
+    weatherElement.innerHTML = weatherHTML;
+}
+
 function temperatureNow(response){
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
@@ -30,6 +51,8 @@ let humidityElement = document.querySelector("#humidity");
 let windElement = document.querySelector("#wind");
 let dateElement = document.querySelector("#date");
 let iconElement = document.querySelector("#icon");
+
+displayWeather();
 
 celsiusTemperature = response.data.main.temp;
 
