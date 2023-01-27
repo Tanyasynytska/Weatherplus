@@ -22,25 +22,36 @@ function fDate(timestamp) {
 return `${day} ${hours}:${minutes}`;
 }
 
+function formatDays(timestamp) {
+let date = new Date(timestamp * 1000);
+let day = date.getDay();
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+return days[day];
+}
+
 function displayWeather(response) {
-console.log(response.data.daily)
+let weather = response.data.daily;
 
 weatherElement = document.querySelector("#weather");
 
+
+
 let weatherHTML = `<div class="row">`;
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-days.forEach(function (day) {
+weather.forEach(function (weatherDay, index) {
+    if (index < 6) {
     weatherHTML = weatherHTML + `
             <div class="col-2">
-            <div class="weather-plus-date">${day}</div>
-            <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" width="42" />
+            <div class="weather-plus-date">${formatDays(weatherDay.dt)}</div>
+            <img src="http://openweathermap.org/img/wn/${weatherDay.weather[0].icon}@2x.png" alt="" width="42" />
             <div class="weather-plus-temperatures">
-                <span class="weather-plus-temperature-max"> 25° </span>
-                <span class="weather-plus-temperature-min"> 18° </span>
+                <span class="weather-plus-temperature-max"> ${Math.round(weatherDay.temp.max)}° </span>
+                <span class="weather-plus-temperature-min"> ${Math.round(weatherDay.temp.min)}° </span>
             </div>
         </div>`;
-    
+    }
 })
+
     weatherHTML = weatherHTML + `</div>`;
     weatherElement.innerHTML = weatherHTML;
 }
